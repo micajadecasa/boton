@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos Web | Time Tracking Suite</title>
+    <!-- SEO & Icons -->
+    <meta name="description" content="Sistema profesional de registro de jornada optimizado para Smartwatch y Web.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏱️</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- External Libraries (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div>
+                <h1>Chronos <span style="color: var(--accent-primary)">Web</span></h1>
+                <p id="current-date" style="color: var(--text-dim); font-size: 0.9rem;"></p>
+            </div>
+            <div id="status-badge" class="status-pill offline">Fuera de Servicio</div>
+        </header>
+
+        <!-- PUNCH INTERFACE (Optimized for Watch) -->
+        <section class="card punch-container" id="watch-view">
+            <div id="timer" style="font-size: 3rem; font-weight: 800; font-variant-numeric: tabular-nums;">00:00:00</div>
+            
+            <button id="punch-btn" class="btn-punch">
+                <i data-lucide="play" id="punch-icon" style="width: 48px; height: 48px; margin-bottom: 10px;"></i>
+                <span id="punch-text">FICHAR</span>
+            </button>
+            
+            <div style="text-align: center;">
+                <p style="color: var(--text-dim); margin-bottom: 5px;">Último registro:</p>
+                <div id="last-record" style="font-weight: 600;">--:--</div>
+            </div>
+        </section>
+
+        <!-- HISTORY & PDF (Desktop/Mobile View) -->
+        <section class="card" id="history-view">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2>Historial Mensual</h2>
+                <button id="download-pdf" class="btn-pdf">
+                    <i data-lucide="file-down"></i>
+                    Exportar PDF
+                </button>
+            </div>
+            
+            <div class="history-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Entrada</th>
+                            <th>Salida</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                        <!-- Loaded via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="app.js"></script>
+</body>
+</html>
